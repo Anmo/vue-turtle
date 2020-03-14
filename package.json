@@ -1,7 +1,6 @@
 {
   "name": "vue-turtle",
   "version": "0.1.0",
-  "private": true,
   "main": "dist/vue-turtle.umd.min",
   "scripts": {
     "build": "vue-cli-service build --target lib --formats umd-min src/index.js",
