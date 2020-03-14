@@ -2,7 +2,8 @@ import { convertValue, convertArg, wrapper } from "./utils";
 
 export default {
   install(Vue, { modifier = "debounce", wait = 400, listenTo } = {}) {
-    const listOfListenners = convertValue(listenTo);
+		const listOfListenners = convertValue(listenTo);
+		const defaultWait = convertArg(wait);
 
     const mappingEvents = new Map();
     const $on = Vue.prototype.$on;
@@ -23,11 +24,11 @@ export default {
     Vue.directive("turtle", {
       bind(
         _,
-        { value, arg = convertArg(wait), modifiers: { debounce, throttle } },
+        { value, arg, modifiers: { debounce, throttle } },
         { componentInstance: self }
       ) {
         const selectedEvents = convertValue(value) || listOfListenners;
-        const wait = convertArg(arg);
+        const wait = arg !== undefined ? convertArg(arg) : defaultWait;
 
         const events = mappingEvents.get(self);
 
