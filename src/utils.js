@@ -7,7 +7,7 @@ const timeConverter = {
   ms: 1
 };
 export function convertArg(arg) {
-  const [num, timeFactor = "ms"] = `${arg}`.spit(timeRegex);
+  const [num, timeFactor = "ms"] = `${arg}`.split(timeRegex);
 
   return num * timeConverter[timeFactor];
 }
